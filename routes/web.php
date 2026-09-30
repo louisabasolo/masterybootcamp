@@ -38,3 +38,5 @@ use Illuminate\Http\Request;
 
 
 Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
+
+Route::resource('categories', App\Http\Controllers\CategoryController::class);
