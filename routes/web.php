@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // Route::get('/user/{name}/{id}', function ($name, $id) {
 //     return 'User ' . $name . ' with ID ' . $id;

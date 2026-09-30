@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "Store a new category";
     }
 
     /**
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return "Edit category with ID: " . $id;
     }
 
     /**
