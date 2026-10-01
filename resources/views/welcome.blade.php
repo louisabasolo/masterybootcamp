@@ -19,5 +19,19 @@
     <hr>
     <h2>Edit Category</h2>
     <a href="/categories/pokemon/edit">Edit Category</a>
+    <hr>
+    <form action="/categories/pokemon" method="post">
+        @csrf
+        @method('PATCH')
+        <button type="submit">Update Category</button>
+    </form>
+    <hr>
+    <h2>Delete Category</h2>
+    <form action="/categories/pokemon" method="post">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete Category</button>
+    </form>
+    <a href="/photos">Go to Photo Gallery</a>
 </body>
 </html>

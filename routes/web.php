@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,25 @@ Route::get('/', function () {
 
 Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
 
-Route::resource('categories', App\Http\Controllers\CategoryController::class);
+// Route::resource('categories', App\Http\Controllers\CategoryController::class);
+
+
+// Route::resources([
+//     'categories' => CategoryController::class,
+//     'photos' => PhotoController::class,
+// ]);
+
+// Route::resource('categories', CategoryController::class)->only([
+//     'index', 'show'
+// ]);
+
+// Route::resource('photos', PhotoController::class)->except([
+//     'create', 'store', 'update', 'destroy'
+// ]);
+
+// Route::apiResource('categories', CategoryController::class);
+
+Route::apiResources([
+    'categories' => CategoryController::class,
+    'photos' => PhotoController::class,
+]);

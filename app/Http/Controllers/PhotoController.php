@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('welcome');
+        return "Welcome to the Photo Gallery!";
     }
 
     /**
@@ -19,7 +19,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return "Create a new category";
+        //
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return "Store a new category";
+        //
     }
 
     /**
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        return $id;
+        //
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        return "Edit category with ID: " . $id;
+        //
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return "Update category with ID: " . $id;
+        //
     }
 
     /**
@@ -59,6 +59,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        return "Delete category with ID: " . $id;
+        //
     }
 }
