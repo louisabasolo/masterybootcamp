@@ -38,6 +38,42 @@ Route::get('/', function () {
 //     return $token;
 // });
 
+// Route::get('/{id}/{status}', function ($id, $status) {
+//     return $id . ' ' . $status;
+// });
+
+// Route::get('/{id?}', function (?int $id = null) {
+//     return $id;
+// });
+
+// Route::get('/user/{id}', function ($id) {
+//     return $id . ' is correct';
+// })->where('id', 23);
+
+
+// Route::get('/user/{name}', function ($name) {
+//     return $name . ' is correct';
+// })->where('name', '[a-zA-Z]+');
+
+
+// Route::get('books/{genre}', function ($genre) {
+//     return 'Books in the ' . $genre . ' genre';
+// })->whereIn('genre', ['fiction', 'non-fiction', 'mystery', 'romance', 'science-fiction']);
+
+
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+// Route::get('/company-contact', function () {
+//     return "Company Contact";
+// })->name('company.contact');
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware(CalculateCode::class);
+
 
 Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
 
@@ -59,7 +95,13 @@ Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
 
 // Route::apiResource('categories', CategoryController::class);
 
-Route::apiResources([
-    'categories' => CategoryController::class,
-    'photos' => PhotoController::class,
+// Route::apiResources([
+//     'categories' => CategoryController::class,
+//     'photos' => PhotoController::class,
+// ]);
+
+Route::get('/categories/attach-post', [CategoryController::class, 'attach_post'])->name('categories.attach_post');
+
+Route::resource('categories', CategoryController::class)->parameters([
+    'categories' => 'category_id'
 ]);

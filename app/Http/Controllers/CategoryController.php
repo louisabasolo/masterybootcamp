@@ -61,4 +61,8 @@ class CategoryController extends Controller
     {
         return "Delete category with ID: " . $id;
     }
+
+    public function attach_post(){
+        return "Attach post to category";
+    }
 }
