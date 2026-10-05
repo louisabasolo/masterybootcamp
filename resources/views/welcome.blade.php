@@ -33,5 +33,11 @@
         <button type="submit">Delete Category</button>
     </form>
     <a href="/photos">Go to Photo Gallery</a>
+
+    <form action="/post/1" method="post">
+        @csrf
+        @method('PATCH')
+        <button type="submit">Update Post</button>
+    </form>
 </body>
 </html>

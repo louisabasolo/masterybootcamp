@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,8 +101,30 @@ Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
 //     'photos' => PhotoController::class,
 // ]);
 
-Route::get('/categories/attach-post', [CategoryController::class, 'attach_post'])->name('categories.attach_post');
+// Route::get('/categories/attach-post', [CategoryController::class, 'attach_post'])->name('categories.attach_post');
 
-Route::resource('categories', CategoryController::class)->parameters([
-    'categories' => 'category_id'
-]);
+// Route::resource('categories', CategoryController::class)->parameters([
+//     'categories' => 'category_id'
+// ]);
+
+
+// Requests
+
+// Route::get('/', function (Request $request) {
+//     return dd($request);
+// });
+
+Route::patch('/post/{id}', [PostController::class, 'update']);
+Route::get('/post/path', [PostController::class, 'the_path']);
+
+Route::get('/request', function (Request $request) {
+    // return $request->all();
+    // return $request->host();
+    // return $request->method();
+    // return $request->httpHost();
+    // return $request->url();
+    return $request->ip();
+
+});
+
+
