@@ -17,9 +17,9 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/user/{name}/{id}', function ($name, $id) {
 //     return 'User ' . $name . ' with ID ' . $id;
@@ -76,7 +76,7 @@ Route::get('/', function () {
 // })->middleware(CalculateCode::class);
 
 
-Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
+// Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
 
 // Route::resource('categories', App\Http\Controllers\CategoryController::class);
 
@@ -114,17 +114,43 @@ Route::get('/user', [App\Http\Controllers\UserController::class, 'show']);
 //     return dd($request);
 // });
 
-Route::patch('/post/{id}', [PostController::class, 'update']);
-Route::get('/post/path', [PostController::class, 'the_path']);
+// Route::patch('/post/{id}', [PostController::class, 'update']);
+// Route::get('/post/path', [PostController::class, 'the_path']);
 
-Route::get('/request', function (Request $request) {
-    // return $request->all();
-    // return $request->host();
-    // return $request->method();
-    // return $request->httpHost();
-    // return $request->url();
-    return $request->ip();
+// Route::get('/request', function (Request $request) {
+//     // return $request->all();
+//     // return $request->host();
+//     // return $request->method();
+//     // return $request->httpHost();
+//     // return $request->url();
+//     return $request->ip();
 
+// });
+
+
+// Requests Input
+// Route::get('/', function (Request $request) {
+//     $data = $request->all();
+//     return $data['name'] ?? 'No name provided';
+// });
+
+// Route::get('/', function (Request $request) {
+//     $data = $request->collect();
+//     return $data->get('name', 'No name provided');
+// });
+
+
+Route::get('/', function (Request $request) {
+    $data = $request->input();
+    return $data;
 });
 
 
+Route::get('/request', function () {
+    return view('request');
+});
+
+Route::post('/request', function (Request $request) {
+    $data = $request->input('colors.2');
+    return $data;
+});
