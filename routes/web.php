@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -194,6 +195,48 @@ Route::get('/flash', function (Request $request) {
     // $request->flash();
     // return back()->withInput();
     return $request->cookie('laravel_session');
+});
 
 
+Route::get('/response', function () {
+    // return response('Hello World', 200)
+    //     ->header('Content-Type', 'text/plain')
+    //     ->cookie('name', 'value', 60);
+
+    return response('with many headers', 200)->withHeaders([
+        'Content-Type' => 'text/plain',
+        'Header-1' => 'Value 1',
+        'Header-2' => 'Value 2',
+        'X-Custom-Header' => 'Custom Value',
+    ])->cookie('name', 'value', 60);
+});
+
+// Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
+//     Route::get('/cache', function () {
+//         // return response('This response is cached for 1 hour.');
+//         $user = 'Louis Armstrong';
+//         return response('DASHBOARD')->cookie('name', $user);
+//     });
+//     Route::get('/posts', function (Request $request) {
+//         return "Welcome to posts, MR. " . $request->cookie('name');
+//     });
+// });
+
+
+Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
+    Route::get('/cache', function () {
+        // return response('This response is cached for 1 hour.');
+        $user = 'Louis Armstrong';
+        $cookie = cookie('name', $user, 1); // Set cookie for 60 minutes
+        // return response('DASHBOARD')->cookie($cookie);
+        // return response('DASHBOARD')->withoutCookie('visit');
+
+        //remove cookie
+        Cookie::expire('visit');
+    });
+    Route::get('/posts', function (Request $request) {
+        $cookie = cookie('visit', 1, 30); // Set cookie for 30 minutes
+        // return "Welcome to posts, MR. " . $request->cookie('name');
+        return response('POSTS')->cookie($cookie);
+    });
 });
