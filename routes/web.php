@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 // Route::get('/user/{name}/{id}', function ($name, $id) {
 //     return 'User ' . $name . ' with ID ' . $id;
@@ -147,9 +148,9 @@ Route::get('/', function () {
 // });
 
 
-Route::get('/request', function () {
-    return view('request');
-});
+// Route::get('/request', function () {
+//     return view('request');
+// });
 
 // Route::post('/request', function (Request $request) {
 //     $data = $request->input('colors.2');
@@ -190,26 +191,18 @@ Route::get('/request', function () {
 //     return "FLASHED";
 // });
 
+// Route::get('/response', function () {
+//     // return response('Hello World', 200)
+//     //     ->header('Content-Type', 'text/plain')
+//     //     ->cookie('name', 'value', 60);
 
-Route::get('/flash', function (Request $request) {
-    // $request->flash();
-    // return back()->withInput();
-    return $request->cookie('laravel_session');
-});
-
-
-Route::get('/response', function () {
-    // return response('Hello World', 200)
-    //     ->header('Content-Type', 'text/plain')
-    //     ->cookie('name', 'value', 60);
-
-    return response('with many headers', 200)->withHeaders([
-        'Content-Type' => 'text/plain',
-        'Header-1' => 'Value 1',
-        'Header-2' => 'Value 2',
-        'X-Custom-Header' => 'Custom Value',
-    ])->cookie('name', 'value', 60);
-});
+//     return response('with many headers', 200)->withHeaders([
+//         'Content-Type' => 'text/plain',
+//         'Header-1' => 'Value 1',
+//         'Header-2' => 'Value 2',
+//         'X-Custom-Header' => 'Custom Value',
+//     ])->cookie('name', 'value', 60);
+// });
 
 // Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
 //     Route::get('/cache', function () {
@@ -223,20 +216,51 @@ Route::get('/response', function () {
 // });
 
 
-Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
-    Route::get('/cache', function () {
-        // return response('This response is cached for 1 hour.');
-        $user = 'Louis Armstrong';
-        $cookie = cookie('name', $user, 1); // Set cookie for 60 minutes
-        // return response('DASHBOARD')->cookie($cookie);
-        // return response('DASHBOARD')->withoutCookie('visit');
+// Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
+//     Route::get('/cache', function () {
+//         // return response('This response is cached for 1 hour.');
+//         $user = 'Louis Armstrong';
+//         $cookie = cookie('name', $user, 1); // Set cookie for 60 minutes
+//         // return response('DASHBOARD')->cookie($cookie);
+//         // return response('DASHBOARD')->withoutCookie('visit');
 
-        //remove cookie
-        Cookie::expire('visit');
-    });
-    Route::get('/posts', function (Request $request) {
-        $cookie = cookie('visit', 1, 30); // Set cookie for 30 minutes
-        // return "Welcome to posts, MR. " . $request->cookie('name');
-        return response('POSTS')->cookie($cookie);
-    });
+//         //remove cookie
+//         Cookie::expire('visit');
+//     });
+//     Route::get('/posts', function (Request $request) {
+//         $cookie = cookie('visit', 1, 30); // Set cookie for 30 minutes
+//         // return "Welcome to posts, MR. " . $request->cookie('name');
+//         return response('POSTS')->cookie($cookie);
+//     });
+// });
+
+// Redirecting with and without parameters
+
+// Route::get('/login', function () {
+//     return redirect()->route('home');
+// });
+
+// Route::get('/data', function (Request $request) {
+//     return $request->query('id');
+// })->name('data');
+
+// Route::get('/dashboard', function () {
+//     return redirect()->route('data', ['id' => 23]);
+// });
+
+// Redirecting to a controller action
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::get('/request', function () {
+//     return redirect()->action([DashboardController::class, 'index'], ['id' => 23]);
+// });
+
+// Redirecting to external domains
+Route::get('/external', function () {
+    return redirect()->away('https://google.com');
 });
+
+//Redirecting with flashed data
+Route::get('/redirect-dashboard', function () {
+    return redirect('dashboard')->with('user', 'Louis Abasolo');
+});
+Route::get('/dashboard', [DashboardController::class, 'show']);
