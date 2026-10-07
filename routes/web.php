@@ -17,9 +17,9 @@ use App\Http\Controllers\PostController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // Route::get('/user/{name}/{id}', function ($name, $id) {
 //     return 'User ' . $name . ' with ID ' . $id;
@@ -140,17 +140,60 @@ use App\Http\Controllers\PostController;
 // });
 
 
-Route::get('/', function (Request $request) {
-    $data = $request->input();
-    return $data;
-});
+// Route::get('/', function (Request $request) {
+//     $data = $request->input();
+//     return $data;
+// });
 
 
 Route::get('/request', function () {
     return view('request');
 });
 
-Route::post('/request', function (Request $request) {
-    $data = $request->input('colors.2');
-    return $data;
+// Route::post('/request', function (Request $request) {
+//     $data = $request->input('colors.2');
+//     return $data;
+// });
+
+// Route::post('/date', function (Request $request) {
+//     //  dd(gettype($request->date('appointment')));
+//     // $obj = $request->date('appointment');
+//     // return $obj->diffForHumans();
+//     return $request->appointment;
+// });
+
+
+// Route::post('/custom', function (Request $request) {
+//     // $inputs = $request->only(['email', 'checkBox']);
+//     // $inputs = $request->except(['email', 'checkBox']);
+
+//     if($request->has(['email', 'checkBox'])) {
+//         return "Email is present in the request";
+//     } else {
+//         return "Email is not present in the request";
+//     }
+
+// })->name('custom');
+
+// Route::get('/data', function (Request $request) {
+//     // return $request->all();
+//     if($request->missing('email')){
+//         return "Email is missing in the request";
+//     } else {
+//         return "Email is present in the request";
+//     }
+// });
+
+// Route::post('/flash', function (Request $request) {
+//     $request->flash();
+//     return "FLASHED";
+// });
+
+
+Route::get('/flash', function (Request $request) {
+    // $request->flash();
+    // return back()->withInput();
+    return $request->cookie('laravel_session');
+
+
 });
