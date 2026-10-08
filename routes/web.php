@@ -255,12 +255,49 @@ Route::get('/', function () {
 // });
 
 // Redirecting to external domains
-Route::get('/external', function () {
-    return redirect()->away('https://google.com');
-});
+// Route::get('/external', function () {
+//     return redirect()->away('https://google.com');
+// });
 
 //Redirecting with flashed data
-Route::get('/redirect-dashboard', function () {
-    return redirect('dashboard')->with('user', 'Louis Abasolo');
+// Route::get('/redirect-dashboard', function () {
+//     return redirect('dashboard')->with('user', 'Louis Abasolo');
+// });
+// Route::get('/dashboard', [DashboardController::class, 'show']);
+
+//Returning and consuming json data
+// Route::get('/json-home', function(){
+//     return view('json');
+// });
+
+// Route::get('/json', function(){
+//     return response()->json([
+//         'name' => 'Louis',
+//         'role' => 'admin'
+//     ]);
+// });
+
+// Route::view('/profile', 'profile');
+// Route::view('/posts', 'posts.create');
+
+// Passing data
+class User {
+    public $username;
+    public $email;
+
+    function __construct($username, $email)
+    {
+        $this->username = $username;
+        $this->email = $email;
+    }
+}
+
+Route::get('/profile', function(){
+    $user = new User('rico', 'email@email.com');
+
+    // return view('profile', ['user'=>$user]);
+    // return view('profile', compact('user'));
+    return view('profile', compact('user'))->with('status', 'active')->with('color', 'blue');
 });
-Route::get('/dashboard', [DashboardController::class, 'show']);
+
+Route::view('/dashboard', 'dashboard');
