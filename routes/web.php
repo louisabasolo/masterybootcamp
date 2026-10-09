@@ -300,4 +300,11 @@ Route::get('/profile', function(){
     return view('profile', compact('user'))->with('status', 'active')->with('color', 'blue');
 });
 
-Route::view('/dashboard', 'dashboard');
+$items = [1,2,3,'frieza',4,5,6,7,8,'bordock'];
+$products = ['Hydrate','Acoustics','Slumber','Glow','Elevate'];
+Route::view('/dashboard', 'dashboard', ['username'=>'edwin', 'count'=>10, 'status'=>'active', 
+    "users" => [
+        'louis',
+        'james',
+        'pokemon' ]
+, 'items' => $items, 'products' => $products],);
