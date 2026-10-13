@@ -10,7 +10,14 @@
 
 <x-button-component :type="$type" :style="$style"></x-button-component> --}}
 
+@props(['master' => 'I am the master'])
 
 <x-master>
-    HOME
+    {{ $master }}
+    <p>HOME</p>
 </x-master>
+
+
+{{-- <x-button-component :type="$type"></x-button-component> --}}
+
+<x-button-component :$type class="down"></x-button-component>

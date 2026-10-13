@@ -19,8 +19,12 @@
             </div>
         </div>
 
+        @php
+            $message = 'A simple info alert—check it out!';
+        @endphp
+
         <div class="row">
-            <x-alert-component type="warning"></x-alert-component>
+            <x-alert-component :message="$message" type="warning"></x-alert-component>
         </div>
 
 
