@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('welcome');
+        return view('posts.index');
     }
 
     public function update(Request $request, $id)

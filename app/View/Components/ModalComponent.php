@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class ModalComponent extends Component
 {
+    public $color;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($color = null)
     {
-        //
+        $this->color = $color;
     }
 
     /**

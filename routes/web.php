@@ -321,3 +321,5 @@ Route::view('/employees', 'employees');
 Route::get('/mini-project', function(){
     return view('mini-project');
 });
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
