@@ -8,13 +8,21 @@ use Illuminate\View\Component;
 
 class ModalComponent extends Component
 {
-    public $color;
     /**
      * Create a new component instance.
      */
-    public function __construct($color = null)
+    public function __construct(
+        public $modalType = null,
+        public $buttonColor= null,
+        public $modalColor= null,
+        public $modalTextColor= null,
+        public $modalTitle= null,
+        public $modalSaveButtonColor= null,
+        public $modalCloseButtonColor= null,
+        public $modalContent = null
+        )
     {
-        $this->color = $color;
+
     }
 
     /**
@@ -22,6 +30,7 @@ class ModalComponent extends Component
      */
     public function render(): View|Closure|string
     {
+       
         return view('components.modal-component');
     }
 }

@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DynamicController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
@@ -323,3 +325,19 @@ Route::get('/mini-project', function(){
 });
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+Route::get('/dynamic', [DynamicController::class, 'index'])->name('dynamic');
+
+// Route::get('/sessions', function() {
+//     session(['secret'=>'1234mypassword']);
+
+//     $value = session('secret');
+//     return view('session', compact('value'));
+// });
+
+
+Route::prefix('sessions')
+->controller(SessionController::class)
+->group(function(){
+    Route::get('/', 'index');
+});
