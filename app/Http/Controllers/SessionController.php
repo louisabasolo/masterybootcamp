@@ -9,10 +9,21 @@ class SessionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return session()->all();
+        // return $request->session()->get('name');
     }
+
+    public function set(Request $request){
+        // $query = $request->query();
+        // session($query);
+        // $request->session()->put($query);
+        // session(['cars' => ['BMW', 'Lexus', 'Mercedes', 'Ferrari']]);
+        session()->push('cars', 'Toyota');
+        return "session is set";
+    }
+
 
     /**
      * Show the form for creating a new resource.

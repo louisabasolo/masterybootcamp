@@ -340,4 +340,5 @@ Route::prefix('sessions')
 ->controller(SessionController::class)
 ->group(function(){
     Route::get('/', 'index');
+    Route::get('/set', 'set');
 });
