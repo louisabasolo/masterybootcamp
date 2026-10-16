@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DynamicController;
+use App\Http\Controllers\FormPostController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
@@ -341,4 +342,7 @@ Route::prefix('sessions')
 ->group(function(){
     Route::get('/', 'index');
     Route::get('/set', 'set');
+    Route::get('delete-session','delete');
 });
+
+Route::resource('form-posts', FormPostController::class);

@@ -16,12 +16,28 @@ class SessionController extends Controller
     }
 
     public function set(Request $request){
-        // $query = $request->query();
+        $query = $request->query();
         // session($query);
         // $request->session()->put($query);
         // session(['cars' => ['BMW', 'Lexus', 'Mercedes', 'Ferrari']]);
-        session()->push('cars', 'Toyota');
+        // session()->push('cars', 'Toyota');
+
+        $cars = ['BMW', 'Lexus', 'Mercedes', 'Ferrari'];
+        session(['cars'=>collect($cars)]);
         return "session is set";
+    }
+
+    public function delete(){
+        // session()->forget('email');
+
+        /**
+         * Remove a specific item or items from an array in sessions
+         */
+        // session()->put('cars', array_diff(session()->get('cars'), ['Toyota']));
+
+        $car = session('cars')->search('Lexus');
+        session('cars')->forget($car);
+        return "Session removed";
     }
 
 
