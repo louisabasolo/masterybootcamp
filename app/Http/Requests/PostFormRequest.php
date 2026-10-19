@@ -26,4 +26,11 @@ class PostFormRequest extends FormRequest
             'body' => 'required'
         ];
     }
+
+    public function messages(){
+        return [
+            'title.required' => 'You need to put a title',
+            'body.required' => 'Something needs to be written here.'
+        ];
+    }
 }

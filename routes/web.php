@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -346,3 +347,10 @@ Route::prefix('sessions')
 });
 
 Route::resource('form-posts', FormPostController::class);
+
+
+Route::get('/database', function(){
+    DB::insert('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', ['james', 'james@email.com', 'another_password55624']);
+
+    return view('database.index');
+});
