@@ -14,6 +14,7 @@ class ModalComponent extends Component
     public function __construct(
         public $modalType = null,
         public $buttonColor= null,
+        public $buttonText = null,
         public $modalColor= null,
         public $modalTextColor= null,
         public $modalTitle= null,

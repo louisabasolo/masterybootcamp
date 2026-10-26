@@ -7,9 +7,11 @@ use App\Http\Controllers\FormPostController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -350,7 +352,37 @@ Route::resource('form-posts', FormPostController::class);
 
 
 Route::get('/database', function(){
-    DB::insert('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', ['james', 'james@email.com', 'another_password55624']);
+    /**
+     * Inserting data into the database
+     */
+    // DB::insert('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', ['pretty', 'pretty@email.com', 'sample@password_12345']);
 
-    return view('database.index');
+    // return view('database.index');
+
+    /**
+     * Getting data from the database
+     */
+    // $user = DB::select('SELECT * FROM users WHERE id = ?', [1]);
+    // return $user;
+
+
+    /**
+     * Updating information in a data in the database
+     */
+    // $password = 'ThisisTheNewP@ssword';
+    // $hashedPassword = Hash::make($password);
+
+    // DB::update("UPDATE users SET password = ?, created_at = CURRENT_TIMESTAMP WHERE id = ?",[$hashedPassword, 1]);
+
+    // return "password updated";
+
+
+    /**
+     * DELETE 
+     */
+    DB::delete('DELETE FROM users WHERE id = ?', [1]);
+    return "User removed";
 });
+
+
+Route::get('/users', [UserController::class, 'index']);
