@@ -56,7 +56,13 @@ class UserController extends Controller
      */
     public function update(UsersUpdateRequest $request, string $id)
     {
-        
+        $inputs = $request->all();
+
+        $data = $request->safe()->merge($inputs)->except(['_token', '_method', 'password_confirmation']);
+
+        DB::table('users')->where('id', $id)->update($data);
+
+        return redirect()->route('users.index');
     }
 
     /**
