@@ -385,4 +385,4 @@ Route::get('/database', function(){
 });
 
 
-Route::get('/users', [UserController::class, 'index']);
+Route::resource('users', UserController::class);
