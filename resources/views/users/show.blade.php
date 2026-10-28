@@ -6,7 +6,12 @@
 
 @section('content')
     <div class="col-6 offset-4 pt-5">
+
         <h2 class="text-center">Edit User {{ $user->id }}</h2>
+        <div class="mt-3 mb-3">
+            <a href="{{ route('users.index') }}" class="btn btn-secondary"><img src="{{ asset('images/back-arrow.png') }}"
+                    alt="Add User" width="20" height="20" style="filter: brightness(0) invert(1)"> Back to users</a>
+        </div>
         <form method="post" action="{{ route('users.update', $user->id) }}">
             @csrf
             @method('PUT')

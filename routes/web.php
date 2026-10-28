@@ -385,4 +385,6 @@ Route::get('/database', function(){
 });
 
 
+Route::post('/users/dummy', [UserController::class, 'dummy'])->name('users.dummy');
+
 Route::resource('users', UserController::class);
