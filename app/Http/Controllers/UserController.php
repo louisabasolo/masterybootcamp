@@ -25,7 +25,8 @@ class UserController extends Controller
         // $users = DB::table('users')->select('name')->orderBy('name', 'asc')->get();
 
 
-        $users = DB::table('users')->get();
+
+        $users = DB::table('users')->paginate(15);
 
         return view('users.index', compact('users'));
     }
@@ -93,7 +94,8 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function dummy(){
+    public function dummy()
+    {
         // DB::table('users')->truncate();
         // $users = Storage::json('public/users.json');
 
@@ -112,8 +114,8 @@ class UserController extends Controller
         // return redirect()->route('users.index');
         DB::table('users')->truncate();
         $faker = Factory::create();
-        for($i = 0; $i<100; $i++){
-            $createdAt = Carbon::now()->addHours(rand(1,23));
+        for ($i = 0; $i < 100; $i++) {
+            $createdAt = Carbon::now()->addHours(rand(1, 23));
             DB::table('users')->insert([
                 'name' => $faker->name,
                 'email' => $faker->email,
@@ -121,8 +123,8 @@ class UserController extends Controller
                 'password' => Hash::make($faker->password(8)),
                 'remember_token' => Str::random(10),
                 'created_at' => $createdAt,
-                'updated_at' => $createdAt->addHours(rand(2,3))
-        ]);
+                'updated_at' => $createdAt->addHours(rand(2, 3))
+            ]);
         };
 
         return redirect()->route('users.index');

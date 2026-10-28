@@ -55,7 +55,7 @@
             </table>
         </div>
     @endif
-
+{{ $users->links() }}
 @endsection
 
 
